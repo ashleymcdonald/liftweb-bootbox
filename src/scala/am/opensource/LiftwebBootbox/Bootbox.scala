@@ -65,6 +65,30 @@ trait Bootbox {
 				    | });""".stripMargin
 	}
 
+	/** Case Class `prompt`
+	  *
+	  * @author Ashley McDonald
+	  * @version Created on 04/12/2015.
+	  * @example
+		* {{{
+	  *  Bootbox.prompt( "Whats your name", "Anonymous", name => JsCmds.Run("console.log('the name was ' + " + name.encJs + ");"))))
+	  * }}}
+	  */
+	case class prompt(title:String,defaultValue:String = "", action: String => JsCmd) extends JsCmd
+	{
+		val jsTitle: String = title.encJs
+		val jsDefaultValue: String = defaultValue.encJs
+
+		def toJsCmd: String =
+			s"""bootbox.prompt({
+			    |    value: $jsDefaultValue,
+			    |    title: $jsTitle,
+			    |    callback: function(result) {
+			    |      ${SHtml.ajaxCall("result",action).toJsCmd}
+			    |    }
+			    | });""".stripMargin
+	}
+
 	/** Case Class `custom`
 	  *
 	  * @author Ashley McDonald
