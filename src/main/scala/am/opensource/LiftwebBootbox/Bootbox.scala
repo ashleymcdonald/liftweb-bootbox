@@ -4,6 +4,7 @@ package am.opensource.LiftwebBootbox
 
 import net.liftweb.common.{Full, Empty, Box}
 import net.liftweb.http.SHtml
+import net.liftweb.http.js.JE.JsRaw
 import net.liftweb.http.js._
 import net.liftweb.util.Helpers._
 
@@ -84,7 +85,7 @@ trait Bootbox {
 			    |    value: $jsDefaultValue,
 			    |    title: $jsTitle,
 			    |    callback: function(result) {
-			    |      ${SHtml.ajaxCall("result",action).toJsCmd}
+			    |      ${SHtml.ajaxCall(JsRaw("result"),action).toJsCmd}
 			    |    }
 			    | });""".stripMargin
 	}
