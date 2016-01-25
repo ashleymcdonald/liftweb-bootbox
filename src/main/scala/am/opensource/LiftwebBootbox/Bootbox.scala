@@ -61,7 +61,7 @@ trait Bootbox {
 				    |    message: $jsMsg,
 				    |    title: $jsTitle,
 				    |    callback: function(result) {
-				    |       if (result) { $result }
+				    |       if (result) { $jsResult }
 				    |    }
 				    | });""".stripMargin
 	}
